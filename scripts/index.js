@@ -7,24 +7,6 @@ const addCardPopUp = document.querySelector(".popup_type_new-card");
 const closePopUpButton = addCardPopUp.querySelector(".popup__close");
 const saveCardButton = addCardPopUp.querySelector(".popup__button");
 const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-let currentCards = initialCards;
-cardsOnPage(currentCards);
-// функция отображения карточки
-function cardsOnPage(cards) {
-  cards.forEach((object) => {
-    const title = object.name;
-    const image = object.link;
-    const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
-    cardElement.querySelector(".card__image").src = image;
-    cardElement.querySelector(".card__title").textContent = title;
-    cardsList.append(cardElement);
-    cardElement
-      .querySelector(".card__delete-button")
-      .addEventListener("click", () => {
-        cardElement.remove();
-      });
-  });
-}
 //открыть/закрыть попап
 addCardButton.addEventListener("click", () => {
   addCardPopUp.classList.add("popup_is-opened");
@@ -32,16 +14,38 @@ addCardButton.addEventListener("click", () => {
 closePopUpButton.addEventListener("click", () => {
   addCardPopUp.classList.remove("popup_is-opened");
 });
-//функция добавления карточки
+//добавление карточки
 saveCardButton.addEventListener("click", () => {
-  const newCard = [];
-  const cardData = {};
-  cardData.name = addCardPopUp.querySelector(
+  addCardPopUp.classList.remove("popup_is-opened");
+  renderCard(createCard(), deleteCard);
+});
+//функция создания карточки
+function createCard(newCard) {
+  newCard = {};
+  newCard.name = addCardPopUp.querySelector(
     ".popup__input_type_card-name"
   ).value;
-  cardData.link = addCardPopUp.querySelector(".popup__input_type_url").value;
-  newCard.push(cardData);
-  currentCards = currentCards.concat(newCard);
-  addCardPopUp.classList.remove("popup_is-opened");
-  cardsOnPage(newCard);
+  newCard.link = addCardPopUp.querySelector(".popup__input_type_url").value;
+  return newCard;
+}
+//функция рендера карточки
+function renderCard(card, onDelete) {
+  const title = card.name;
+  const image = card.link;
+  const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
+  cardElement.querySelector(".card__image").src = image;
+  cardElement.querySelector(".card__image").alt = `Изображение ${title}`;
+  cardElement.querySelector(".card__title").textContent = title;
+  cardsList.append(cardElement);
+  onDelete(cardElement);
+}
+
+function deleteCard(card) {
+  card.querySelector(".card__delete-button").addEventListener("click", () => {
+    card.remove();
+  });
+}
+
+initialCards.forEach((card) => {
+  renderCard(card, deleteCard);
 });
