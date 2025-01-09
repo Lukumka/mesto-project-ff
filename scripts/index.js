@@ -14,13 +14,13 @@ addCardButton.addEventListener("click", () => {
 closePopUpButton.addEventListener("click", () => {
   addCardPopUp.classList.remove("popup_is-opened");
 });
-//добавление карточки
+//добавление новой  карточки
 saveCardButton.addEventListener("click", () => {
   addCardPopUp.classList.remove("popup_is-opened");
-  renderCard(createCard(), deleteCard);
+  renderCard(generateCard(), deleteCard);
 });
-//функция создания карточки
-function createCard(newCard) {
+//функция создания новой карточки
+function generateCard(newCard) {
   newCard = {};
   newCard.name = addCardPopUp.querySelector(
     ".popup__input_type_card-name"
@@ -28,18 +28,22 @@ function createCard(newCard) {
   newCard.link = addCardPopUp.querySelector(".popup__input_type_url").value;
   return newCard;
 }
-//функция рендера карточки
-function renderCard(card, onDelete) {
+//функция создания карточки
+function createCard(card, onDelete) {
   const title = card.name;
   const image = card.link;
   const cardElement = cardTemplate.querySelector(".card").cloneNode(true);
   cardElement.querySelector(".card__image").src = image;
   cardElement.querySelector(".card__image").alt = `Изображение ${title}`;
   cardElement.querySelector(".card__title").textContent = title;
-  cardsList.append(cardElement);
   onDelete(cardElement);
+  return cardElement;
 }
-
+//функция рендера карточки
+function renderCard(card) {
+  cardsList.append(createCard(card, deleteCard));
+}
+//функция удаления карточки
 function deleteCard(card) {
   card.querySelector(".card__delete-button").addEventListener("click", () => {
     card.remove();
