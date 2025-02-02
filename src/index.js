@@ -61,20 +61,14 @@ const caption = imagePopUp.querySelector(".popup__caption");
 // All popups
 document.querySelectorAll(".popup").forEach((element) => {
   element.classList.add("popup_is-animated");
-  setModalWindowEventListeners(element);
+  setModalWindowEventListeners(element,clearFields);
 });
 //addCard
 addCardButton.addEventListener("click", () => {
   openModal(addCardPopUp);
 });
-
+//addCardForm
 addCardForm.addEventListener("submit", handleCardFormSubmit);
-
-addCardPopUp.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("popup__close")) {
-    clearFields(addCardPopUp);
-  }
-});
 //editProfile
 editProfileButton.addEventListener("click", () => {
   openModal(editProfilePopUp);
@@ -84,11 +78,6 @@ editProfileButton.addEventListener("click", () => {
 
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
-editProfilePopUp.addEventListener("click", (evt) => {
-  if (evt.target.classList.contains("popup__close")) {
-    clearFields(addCardPopUp);
-  }
-});
 //submit handler
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
