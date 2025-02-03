@@ -1,7 +1,6 @@
 // Открытие модального окна
 export function openModal(popup) {
   popup.classList.add("popup_is-opened");
-  document.addEventListener("keydown", handleKeyPress);
 }
 // Закрытие модального окна
 export function closeModal(modal) {
