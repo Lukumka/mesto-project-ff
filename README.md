@@ -1,5 +1,5 @@
 # Проектная работа Mesto
-# https://github.com/Lukumka/mesto-project-ff.git
+# https://lukumka.github.io/mesto-project-ff/
 # Lukumka
 # mesto-project 
 
