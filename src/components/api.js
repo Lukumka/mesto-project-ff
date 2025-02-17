@@ -6,13 +6,11 @@ const headersConfig = {
 };
 
 export async function fetchData(requestUrl, requestConfig) {
-  try {
-    const response = await fetch(requestUrl, requestConfig);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Ошибка при запросе:", error);
-    return null;
+  const response = await fetch(requestUrl, requestConfig);
+  if (response.ok) {
+    return await response.json();
+  } else {
+    return await Promise.reject(response.status);
   }
 }
 
@@ -61,7 +59,7 @@ export function sendNewCardData(obj) {
     }),
   });
 }
-export function deleteCardData(cardId) {
+export async function deleteCardData(cardId) {
   return fetchData(`${requestCardsUrl}/${cardId}`, {
     method: "DELETE",
     headers: headersConfig,
