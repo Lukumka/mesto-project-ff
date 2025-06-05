@@ -4,7 +4,6 @@
   "description": "https://github.com/Lukumka/mesto-project-ff.git",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"ya lublu pelmeni\" && exit 1",
     "build": "webpack --mode production",
     "start": "webpack serve",
     "deploy": "gh-pages -d dist"

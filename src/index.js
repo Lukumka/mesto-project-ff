@@ -16,7 +16,6 @@ import likeInactive from "./assets/like/like-inactive.svg";
 //css
 import "./index.css";
 
-import { initialCards } from "./components/cards.js";
 import { createCard, likeCard } from "./components/card.js";
 import {
   openModal,
@@ -33,19 +32,6 @@ import {
   sendNewAvatar,
 } from "./components/api.js";
 
-const pageImages = [
-  { name: "Avatar", link: avatar },
-  { name: "Logo", link: logo },
-  { name: "Card_1", link: card1 },
-  { name: "Card_2", link: card2 },
-  { name: "Card_3", link: card3 },
-  { name: "Add-icon", link: addIcon },
-  { name: "Close", link: close },
-  { name: "Delete-icon", link: deleteIcon },
-  { name: "Edit-icon", link: editIcon },
-  { name: "Like-active", link: likeActive },
-  { name: "Like_inactive", link: likeInactive },
-];
 const cardsList = document.querySelector(".places__list");
 
 const addCardButton = document.querySelector(".profile__add-button");
@@ -221,8 +207,6 @@ async function setUpAllData() {
       getCardsData(),
       getProfileData(),
     ]);
-    console.log(cardsArr);
-    console.log(userData);
 
     profileName.textContent = userData.name;
     profileTitle.textContent = userData.about;
