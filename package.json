@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"ya lublu pelmeni\" && exit 1",
     "build": "webpack --mode production",
-    "dev": "webpack serve",
+    "start": "webpack serve",
     "deploy": "gh-pages -d dist"
   },
   "repository": {
@@ -33,11 +33,14 @@
     "mini-css-extract-plugin": "^2.9.2",
     "postcss-loader": "^8.1.1",
     "style-loader": "^4.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3",
     "webpack": "^5.97.1",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
   },
   "dependencies": {
+    "copy-webpack-plugin": "^13.0.0",
     "core-js": "^3.40.0"
   }
 }

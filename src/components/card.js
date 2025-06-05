@@ -1,5 +1,9 @@
 import { sendLikesData, deleteLikesData } from "./api";
-
+/**
+ * Функция созадет карточку принимая данные
+ * 
+ * 
+ */
 export function createCard(obj) {
   const title = obj.card.name;
   const image = obj.card.link;
